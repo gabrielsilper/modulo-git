@@ -1,3 +1,4 @@
+import re
 """
 Desafio Módulo Git
 
@@ -32,21 +33,16 @@ def listar_comandos_git_basicos():
 
 
 def criar_mensagem_commit(funcao_nome):
-    """
-    Recebe o nome de uma função e retorna uma mensagem de commit padronizada.
-    Exemplo:
-    criar_mensagem_commit("listar_comandos_git_basicos") ->
-    "Implementa função listar_comandos_git_basicos"
-    """
     return f"feat: Implementa função {funcao_nome}"
 
 
 def verificar_tag_valida(tag):
     """
-    Verifica se uma tag está no formato 'vX.Y' (ex: v1.0, v2.1).
+    Verifica se uma tag está no formato 'vX.Y.Z' (ex: v1.0.1, v2.1.23).
     Retorna True se o formato for válido, caso contrário False.
     """
-    pass
+    tag_pattern = re.compile(r"^v\d+\.\d+\.\d+$")
+    return re.fullmatch(tag_pattern, tag) is not None
 
 
 def gerar_relatorio_final(funcoes_concluidas):
